@@ -2,6 +2,10 @@
 
 This module makes possible to select among a set of proposals by sortition.
 
+## Compatibility
+
+This module targets Decidim `0.32.x`.
+
 ## Usage
 
 Simply include it in your Decidim instance.
@@ -18,15 +22,8 @@ And then execute:
 
 ```bash
 bundle
-```
-
-## Import migrations
-
-After installing the gem you must import and execute the migrations bundled with the gem:
-
-```bash
-bundle exec rails decidim_sortitions:install:migrations
-bundle exec rails db:migrate
+bin/rails decidim:upgrade
+bin/rails db:migrate
 ```
 
 ## Contributing

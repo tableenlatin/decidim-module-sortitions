@@ -155,19 +155,26 @@ module Decidim
           end
         end
 
+        shared_examples "unauthorized Sortition" do
+          it "raises Decidim::Api::Errors::UnauthorizedObjectError" do
+            expect { response }.to raise_error(
+              Decidim::Api::Errors::UnauthorizedObjectError,
+              "You cannot view or edit this Sortition because you do not have permissions"
+            )
+          end
+        end
+
         context "when participatory space is private" do
-          let(:participatory_space) { create(:participatory_process, :with_steps, :private, organization: current_organization) }
+          let(:participatory_space) { create(:participatory_process, :with_steps, :restricted, organization: current_organization) }
           let(:current_component) { create(:sortition_component, participatory_space:) }
           let(:model) { create(:sortition, component: current_component) }
           let(:query) { "{ id }" }
 
-          it "returns nothing" do
-            expect(response).to be_nil
-          end
+          it_behaves_like "unauthorized Sortition"
         end
 
         context "when participatory space is private but transparent" do
-          let(:participatory_space) { create(:assembly, :private, :transparent, organization: current_organization) }
+          let(:participatory_space) { create(:assembly, :restricted, :transparent, organization: current_organization) }
           let(:current_component) { create(:sortition_component, :published, participatory_space:) }
           let(:model) { create(:sortition, component: current_component) }
           let(:query) { "{ id }" }
@@ -183,9 +190,7 @@ module Decidim
           let(:model) { create(:sortition, component: current_component) }
           let(:query) { "{ id }" }
 
-          it "returns nothing" do
-            expect(response).to be_nil
-          end
+          it_behaves_like "unauthorized Sortition"
         end
 
         context "when component is not published" do
@@ -193,9 +198,7 @@ module Decidim
           let(:model) { create(:sortition, component: current_component) }
           let(:query) { "{ id }" }
 
-          it "returns nothing" do
-            expect(response).to be_nil
-          end
+          it_behaves_like "unauthorized Sortition"
         end
       end
     end

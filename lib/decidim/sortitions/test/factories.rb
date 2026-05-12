@@ -20,7 +20,7 @@ FactoryBot.define do
       skip_injection { false }
     end
     component { create(:sortition_component, skip_injection:) }
-    decidim_proposals_component { create(:proposal_component, organization: component.organization, skip_injection:) }
+    decidim_proposals_component { create(:proposal_component, :published, participatory_space: component.participatory_space, skip_injection:) }
 
     title { generate_localized_title(:sortition_title, skip_injection:) }
     author do

@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     "homepage_uri" => "https://decidim.org",
     "source_code_uri" => "https://github.com/decidim/decidim"
   }
-  s.required_ruby_version = "~> 3.3.0"
+  s.required_ruby_version = "~> 3.4.0"
 
   s.name = "decidim-sortitions"
   s.summary = "Decidim sortitions module"
@@ -30,12 +30,12 @@ Gem::Specification.new do |s|
     end
   end
 
-  s.add_dependency "decidim-admin", Decidim::Sortitions.version
-  s.add_dependency "decidim-comments", Decidim::Sortitions.version
-  s.add_dependency "decidim-core", Decidim::Sortitions.version
-  s.add_dependency "decidim-proposals", Decidim::Sortitions.version
+  s.add_dependency "decidim-admin", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
+  s.add_dependency "decidim-comments", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
+  s.add_dependency "decidim-core", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
+  s.add_dependency "decidim-proposals", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
 
-  s.add_development_dependency "decidim-assemblies", Decidim::Sortitions.version
-  s.add_development_dependency "decidim-dev", Decidim::Sortitions.version
-  s.add_development_dependency "decidim-participatory_processes", Decidim::Sortitions.version
+  s.add_development_dependency "decidim-assemblies", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
+  s.add_development_dependency "decidim-dev", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
+  s.add_development_dependency "decidim-participatory_processes", Decidim::Sortitions::COMPAT_DECIDIM_VERSION
 end
