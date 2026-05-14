@@ -9,17 +9,11 @@ require "decidim/sortitions/component"
 module Decidim
   # Base module for this engine.
   module Sortitions
-    include ActiveSupport::Configurable
-
     # Public setting that defines how many elements will be shown
     # per page inside the administration view.
-    config_accessor :items_per_page do
-      15
-    end
+    mattr_accessor :items_per_page, default: 15
 
     # Link to algorithm used for the sortition
-    config_accessor :sortition_algorithm do
-      "https://ruby-doc.org/core-2.4.0/Random.html"
-    end
+    mattr_accessor :sortition_algorithm, default: "https://ruby-doc.org/core-2.4.0/Random.html"
   end
 end
